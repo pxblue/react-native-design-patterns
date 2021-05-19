@@ -48,14 +48,3 @@ jobs:
             - codecov/upload:
                 file: './coverage/clover.xml'
                 token: 0d49af86-b079-4fcf-a6a8-504a66366cb6
-# workflows:
-#     version: 2
-#     react-native_design_patterns:
-#         jobs:
-#             - coverage_report:
-#                 requires:
-#                     - build
-#                    filters:
-#                         branches:
-#                             only:
-#                                 - master
