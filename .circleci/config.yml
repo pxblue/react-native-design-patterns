@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+    codecov: codecov/codecov@1.1.3
 jobs:
     build:
         working_directory: ~/react-native-design-patterns
@@ -29,4 +31,31 @@ jobs:
             - run:
                   name: Unit Tests
                   command: |
-                      yarn test
+                      yarn test --coverage --watchAll=false
+            # Save the coverage folder for codecov report upload.
+            - persist_to_workspace:
+                  root: .
+                  paths:
+                      - coverage
+    coverage_report:
+        working_directory: ~/react-native-design-patterns
+        docker:
+            - image: circleci/node:12.9.1-browsers
+        steps:
+            - checkout
+            - attach_workspace:
+                at: .
+            - codecov/upload:
+                file: './coverage/clover.xml'
+                token: 0d49af86-b079-4fcf-a6a8-504a66366cb6
+workflows:
+    version: 2
+    react-native_library:
+        jobs:
+            - coverage_report:
+                   requires:
+                        - unit_tests
+                #    filters:
+                #         branches:
+                #             only:
+                #                 - master

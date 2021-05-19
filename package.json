@@ -11,7 +11,8 @@
         "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
         "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check",
         "test": "jest",
-        "precommit": "yarn prettier && yarn lint && yarn test"
+        "precommit": "yarn prettier && yarn lint && yarn test",
+        "coverage": "yarn test --coverage --watchAll=false"
     },
     "dependencies": {
         "@expo/metro-config": "^0.1.61",
@@ -59,6 +60,7 @@
         "@typescript-eslint/eslint-plugin": "^4.5.0",
         "@typescript-eslint/parser": "^4.5.0",
         "babel-preset-expo": "8.3.0",
+        "codecov": "^3.8.2",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.2",
         "eslint": "^7.11.0",
@@ -74,7 +76,9 @@
         "preset": "jest-expo",
         "transformIgnorePatterns": [
             "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"
-        ]
+        ],
+        "coverageDirectory": "./coverage",
+        "collectCoverage": true
     },
     "private": true,
     "prettier": "@pxblue/prettier-config"
