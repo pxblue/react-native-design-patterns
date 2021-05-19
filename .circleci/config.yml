@@ -56,7 +56,7 @@ workflows:
             - build_patterns
             - coverage_report:
                 requires:
-                    - build
+                    - build_patterns
                 # filters:
                 #     branches:
                 #         only:
