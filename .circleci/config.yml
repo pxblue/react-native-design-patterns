@@ -2,7 +2,7 @@ version: 2.1
 orbs:
     codecov: codecov/codecov@1.1.3
 jobs:
-    build:
+    build_patterns:
         working_directory: ~/react-native-design-patterns
         docker:
             - image: circleci/node:12.6
@@ -48,3 +48,16 @@ jobs:
             - codecov/upload:
                 file: './coverage/clover.xml'
                 token: 0d49af86-b079-4fcf-a6a8-504a66366cb6
+
+workflows:
+  version: 2
+  react_native_design_patterns:
+        jobs:
+            - build_patterns
+            - coverage_report:
+                requires:
+                    - build
+                # filters:
+                #     branches:
+                #         only:
+                #             - master
