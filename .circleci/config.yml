@@ -53,7 +53,6 @@ workflows:
     react-native_library:
         jobs:
             - coverage_report:
-                   requires:
                    filters:
                         branches:
                             only:
